@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Roboto:wght@300&display=swap');
+
+
+body{
+  font-family: 'Lato', sans-serif;
+  background-color:#282121 ;
+  overflow: hidden;
+}
+.bg-red{
+  /* #f7656a;*/
+  background-color:transparent;
+  color: #fff;
+}
+.scroll{
+  height:100%;
+  overflow: auto ;
+}
+.cursor{
+  cursor: pointer;
+}
+
+.active{
+  color: yellow !important;
+}
+.title{
+  border: 1px solid white;
+  position: sticky;
+}
+.navbar{
+  background-color: black;
+  color: white;
+ 
+}
+.container{
+  height:100%;
+}
+
+
