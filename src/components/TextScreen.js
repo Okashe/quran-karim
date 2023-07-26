@@ -2,26 +2,30 @@ import React , {useState} from 'react';
 
 
 
-const RecitersScreen = (surahs, surahHandler}) => {
-const [activeId , setActiveId] =useState('');
+const TextScreen = ({verses, verseHandler}) => {
+
+  const [activeId , setActiveId] =useState('');
+
   return (
+
     <div className='min-vh-100 shadow-lg p-3 bg-red'>
     <h1 className='fs-5 fw-bold text-center title sticky'>Mushaf</h1> <hr />
     <ul className='list-group text-start'>
-    {surahs && surahs.length>0?(
-      surahs.map((surah) => (
-        <div key={surah.id}>
+    {verses && verses.length>0?(
+      verses.map((verse) => (
+        <div key={verse.id}>
          <li onClick={(e)=>{
-          reciterHandler(reciter) 
-          setActiveId(reciter.id)
+          verseHandler(verse) 
+          setActiveId(verse.id)
         }} 
           className={`list-group-item bg-transparent border-0 text-light py-0 justify-content-between cursor fs-6 
           ${
-            reciter.id===activeId && 'active'
+            verse.id === activeId && 'active'
           }`}
           >
-           <FaUserCircle className='fs-3 me-3' />
-            <span className=''>{reciter.name}</span>
+           <p>
+            {verse.text_madani}
+           </p>
          </li>
          <hr />
        </div>
@@ -46,4 +50,4 @@ const [activeId , setActiveId] =useState('');
   )
 }
 
-export default RecitersScreen
+export default TextScreen

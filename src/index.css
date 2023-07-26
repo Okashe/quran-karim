@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Roboto:wght@300&display=swap');
 
 
@@ -20,16 +24,14 @@ body{
 }
 
 .active{
-  color: yellow !important;
+  color: green !important;
 }
 .title{
   border: 1px solid white;
-  position: sticky;
 }
 .navbar{
-  background-color: black;
-  color: white;
- 
+  background-color: rgb(42, 92, 56);
+  color: white !important;
 }
 .container{
   height:100%;

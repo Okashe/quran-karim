@@ -2,12 +2,15 @@ import React, {useEffect, useState} from 'react';
 import RecitersScreen from './RecitersScreen';
 import ChapterScreen from './ChapterScreen';
 import PlayerScreen from './PlayerScreen';
+import TextScreen from './TextScreen';
 import axios from 'axios';
 import Navbar from './Navbar';
 
 const HomeScreen = () => {
     const [reciters, setReciters] =useState([]);
     const [chapters, setChapters] =  useState([]);
+
+    const [verses, setVerses] = useState([]);
 
     const [reciterDetail, setReciterDetail] = useState(null);
     const [chapterDetail, setChapterDetail] = useState(null);
@@ -40,6 +43,20 @@ const HomeScreen = () => {
         reciters&& reciters.length > 0 && fetchData() 
     }, [reciters])
 
+    //get verses
+    useEffect(()=>{
+        async function fetchData(){
+            const {
+                 data: verses,
+                }= await axios.get(
+                `https://api.quran.com/api/v3/chapters/1/verses`
+                )
+                setVerses(verses)
+              
+        }
+        verses&& verses.length > 0 && fetchData() 
+    }, [verses])
+
     
     const reciterHandler = (reciter) =>{
         
@@ -49,11 +66,19 @@ const HomeScreen = () => {
        
         setChapterDetail(chapter)
     }
+
+    const verseHandler = (verses) =>{
+       
+        setVerses(verses)
+    }
     
   return (
-    <div className='container grid grid-cols-3 '>
+    <div className='font-serif font-semibold space-y-3'>
+         <Navbar />
+         <div className='container grid-cols-3 '>
+        
         <div className=' row p-5  vh-100  '>
-        <Navbar />
+      
        <div className='col-lg-4 col-md-4 col-sm-12 col-12 scroll '>
           <RecitersScreen 
             reciters={reciters} 
@@ -62,8 +87,8 @@ const HomeScreen = () => {
        </div>
        <div className='col-lg-4 col-md-4 col-sm-12 col-12 scroll '>
         
-          <ChapterScreen chapters={chapters&&chapters.chapters}
-           chapterHandler={chapterHandler}
+          <ChapterScreen chapters={chapters && chapters.chapters}
+             chapterHandler={chapterHandler}
             />
        </div>
        <div className='col-lg-4 col-md-4 col-sm-12 col-12'>
@@ -72,8 +97,16 @@ const HomeScreen = () => {
           chapterDetail={chapterDetail}
           />
        </div>
+       <div className='col-lg-4 col-md-4 col-sm-12 col-12'>
+          <TextScreen 
+            verses ={verses&&verses.verses}
+            verseHandler ={verseHandler}
+          />
+       </div>
     </div>
     </div>
+    </div>
+   
     
   )
 }

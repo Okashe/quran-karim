@@ -5,17 +5,17 @@ import { FaUserCircle } from 'react-icons/fa';
 const RecitersScreen = ({reciters, reciterHandler}) => {
 const [activeId , setActiveId] =useState('');
   return (
-    <div className='min-vh-100 shadow-lg p-3 bg-red'>
+    <div className='min-vh-100 shadow-lg p-3 bg-orange-400'>
     <h1 className='fs-5 fw-bold text-center bg-white text-black title sticky-top'>Reciters</h1> <hr />
-    <ul className='list-group text-start'>
+    <ul className='list-group text-start '>
     {reciters && reciters.length>0?(
       reciters.map((reciter) => (
-        <div key={reciter.id}>
+        <div key={reciter.id} className=''>
          <li onClick={(e)=>{
           reciterHandler(reciter) 
           setActiveId(reciter.id)
         }} 
-          className={`list-group-item bg-transparent border-0 text-light py-0 justify-content-between cursor fs-6 
+          className={`list-group-item bg-transparent border-0 py-0 justify-content-between cursor fs-6 flex mb-2
           ${
             reciter.id===activeId && 'active'
           }`}
